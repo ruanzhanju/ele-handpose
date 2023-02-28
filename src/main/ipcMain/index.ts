@@ -11,6 +11,12 @@ function setupIpcMain():void {
       cameraWin = null
     })
   })
+
+  ipcMain.on('closeCameraMain', () => {
+    if(cameraWin) {
+      cameraWin.close()
+    }
+  })
 }
 
 export {

@@ -5,12 +5,25 @@ import { join } from 'path'
 export function createVideoWindow() {
   const videoWindow = new BrowserWindow({
     show: false,
-    width: 200,
-    height: 200,
+    width: 250,
+    height: 250,
+    minWidth: 150,
+    minHeight: 150,
+    // maxWidth: 400,
+    // maxHeight: 400,
+    x: 1200,
+    y: 100,
     alwaysOnTop: true,
-    transparent: true
-    // frame: false
+    transparent: true,
+    resizable: true,
+    frame: false,
+    webPreferences: {
+      preload: join(__dirname, '../preload/index.js'),
+      sandbox: false
+    }
   })
+
+  videoWindow.setAspectRatio(1) // 等比例缩放
 
   videoWindow.on('ready-to-show', () => {
     videoWindow.show()

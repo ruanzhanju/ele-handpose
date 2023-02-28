@@ -1,6 +1,6 @@
 <script setup lang="ts">
 function openCamera(): void {
-  window.api.openCameraMain()
+  window.electron.ipcRenderer.send('openCameraMain')
 }
 </script>
 
