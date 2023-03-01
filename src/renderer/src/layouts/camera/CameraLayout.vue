@@ -3,9 +3,12 @@ import { Aim, Close, FullScreen } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import Camera from '@renderer/components/Camera.vue'
 import useDrag from '@renderer/composables/useDrag'
+import useClassify from '@renderer/composables/useClassify'
 
 const { drag } = useDrag()
 drag.run()
+const { classify } = useClassify()
+classify.run('#camera')
 const closeCamera = (): void => {
   window.electron.ipcRenderer.send('closeCameraMain')
 }
@@ -19,7 +22,7 @@ const shapeToggle = (): void => {
 
 <template>
   <main :class="{ 'rounded-full': circleShape }">
-    <Camera />
+    <Camera id="camera" />
     <el-button
       class="closeBtn"
       type="danger"
@@ -47,9 +50,6 @@ const shapeToggle = (): void => {
       circle
       @click="shapeToggle"
     />
-    <!-- <div class="moveable">
-      <el-icon><Pointer class="opacity-70" /></el-icon>
-    </div> -->
   </main>
 </template>
 
@@ -76,9 +76,9 @@ main {
     .shapeBtn {
       @apply block;
     }
-    // .moveable {
-    //   @apply flex justify-center items-center;
-    // }
+  }
+  .el-button {
+    @apply bg-gray-700 opacity-50 text-gray-100;
   }
 }
 </style>
