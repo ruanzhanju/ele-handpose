@@ -11,4 +11,9 @@ function openCamera(): void {
   </div>
 </template>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.camera {
+  @apply object-fill;
+  transform: rotateY(180deg);
+}
+</style>

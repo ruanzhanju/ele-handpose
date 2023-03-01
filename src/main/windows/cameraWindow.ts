@@ -1,18 +1,21 @@
-import { BrowserWindow } from 'electron'
+import { BrowserWindow, screen } from 'electron'
 import { is } from '@electron-toolkit/utils'
 import { join } from 'path'
 
 export function createVideoWindow() {
+  const primaryDisplay = screen.getPrimaryDisplay()
+  const {width, height} = primaryDisplay.workAreaSize
+  const WIDTH = 200, HEIGHT = 200
   const videoWindow = new BrowserWindow({
     show: false,
-    width: 250,
-    height: 250,
+    width: WIDTH,
+    height: HEIGHT,
     minWidth: 150,
     minHeight: 150,
-    // maxWidth: 400,
-    // maxHeight: 400,
-    x: 1200,
-    y: 100,
+    maxWidth: WIDTH,
+    maxHeight: HEIGHT,
+    x: width - WIDTH - 50,
+    y: 50,
     alwaysOnTop: true,
     transparent: true,
     resizable: true,

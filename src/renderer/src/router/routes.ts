@@ -8,12 +8,12 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: () => import('@renderer/layouts/home/Home.vue')
+    component: () => import('@renderer/layouts/home/HomeLayout.vue')
   },
   {
     path: '/camera',
     name: 'camera',
-    component: () => import('@renderer/layouts/camera/Camera.vue')
+    component: () => import('@renderer/layouts/camera/CameraLayout.vue')
   },
   {
     path: '/:notFound(.+)',

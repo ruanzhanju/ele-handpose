@@ -1,20 +1,16 @@
 import { BrowserWindow, ipcMain } from 'electron'
-import { createVideoWindow} from '../windows/index'
-
-let cameraWin: BrowserWindow | null = null
+import cameraMain from './cameraMain'
+import { ceil } from 'lodash'
 
 function setupIpcMain():void {
-  ipcMain.on('openCameraMain', () => {
-    if(cameraWin) return
-    cameraWin = createVideoWindow()
-    cameraWin.on('closed', () => {
-      cameraWin = null
-    })
-  })
-
-  ipcMain.on('closeCameraMain', () => {
-    if(cameraWin) {
-      cameraWin.close()
+  cameraMain()
+  ipcMain.on('dragMain', (event, opt:{x:number, y:number}) => {
+    const win = BrowserWindow.fromWebContents(event.sender)
+    if(win) {
+      const [x, y] = win.getPosition()
+      // const [w, h] = win.getSize()
+      win.setPosition(ceil(x + opt.x), ceil(y + opt.y))
+      // win.setSize(w, h)
     }
   })
 }
