@@ -41,6 +41,6 @@ export function createVideoWindow() {
   } else {
     videoWindow.loadFile(join(__dirname, '../../renderer/index.html/camera'))
   }
-  videoWindow.webContents.openDevTools()
+  // videoWindow.webContents.openDevTools()
   return videoWindow
 }

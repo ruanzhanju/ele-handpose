@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { ElNotification } from 'element-plus'
+window.electron.ipcRenderer.on('ElNotification', (_, opt) => {
+  ElNotification(opt)
+})
 function openCamera(): void {
   window.electron.ipcRenderer.send('openCameraMain')
 }

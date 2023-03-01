@@ -11,17 +11,15 @@ drag.run()
 const { classify } = useClassify()
 onMounted(() => {
   classify.run('#camera')
-  setTimeout(() => {
-    classify.start(async (hand: Hand | undefined) => {
-      if (hand) {
-        // await window.electron.ipcRenderer.invoke('')
-        console.log('hand', hand)
-      } else {
-        // await window.electron.ipcRenderer.invoke('')
-        console.log('hand', hand)
-      }
-    })
-  }, 5000)
+  classify.start(async (hand: Hand | undefined) => {
+    if (hand) {
+      // await window.electron.ipcRenderer.invoke('')
+      console.log('hand', hand)
+    } else {
+      // await window.electron.ipcRenderer.invoke('')
+      // console.log('hand', hand)
+    }
+  })
 })
 const closeCamera = (): void => {
   window.electron.ipcRenderer.send('closeCameraMain')

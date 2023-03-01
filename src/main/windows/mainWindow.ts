@@ -2,7 +2,7 @@ import { BrowserWindow, shell } from 'electron'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
 import icon from '../../../resources/icon.png?asset'
-export function createWindow(): void {
+export function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
@@ -35,4 +35,5 @@ export function createWindow(): void {
   } else {
     mainWindow.loadFile(join(__dirname, '../../renderer/index.html'))
   }
+  return mainWindow
 }
