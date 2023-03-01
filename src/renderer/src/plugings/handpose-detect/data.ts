@@ -22,7 +22,7 @@ export const model = handPoseDetection.SupportedModels.MediaPipeHands
 export const detectorConfig: MediaPipeHandsTfjsModelConfig = {
   runtime: 'tfjs',
   modelType: 'full',
-  maxHands: 2,
+  maxHands: 1,
   detectorModelUrl: '/src/assets/handpose_detect_model/handpose_3d_detecor_full_1/model.json',
   landmarkModelUrl: '/src/assets/handpose_detect_model/handpose_3d_landmark_full_1/model.json'
 }

@@ -1,14 +1,28 @@
 <script setup lang="ts">
 import { Aim, Close, FullScreen } from '@element-plus/icons-vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import Camera from '@renderer/components/Camera.vue'
 import useDrag from '@renderer/composables/useDrag'
 import useClassify from '@renderer/composables/useClassify'
+import { Hand } from '@tensorflow-models/hand-pose-detection'
 
 const { drag } = useDrag()
 drag.run()
 const { classify } = useClassify()
-classify.run('#camera')
+onMounted(() => {
+  classify.run('#camera')
+  setTimeout(() => {
+    classify.start(async (hand: Hand | undefined) => {
+      if (hand) {
+        // await window.electron.ipcRenderer.invoke('')
+        console.log('hand', hand)
+      } else {
+        // await window.electron.ipcRenderer.invoke('')
+        console.log('hand', hand)
+      }
+    })
+  }, 5000)
+})
 const closeCamera = (): void => {
   window.electron.ipcRenderer.send('closeCameraMain')
 }

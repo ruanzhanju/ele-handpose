@@ -508,6 +508,11 @@
     lodash "^4.17.15"
     tmp-promise "^3.0.2"
 
+"@mediapipe/hands@0.4.1646424915":
+  version "0.4.1646424915"
+  resolved "https://mirrors.cloud.tencent.com/npm/@mediapipe/hands/-/hands-0.4.1646424915.tgz#faaa1798dea931044b09dabd1fa845cadb009554"
+  integrity sha512-R1VM3DRCKTA49nVvkprInYUXx8cKisi86y6/9clvYA0vApmLqTjIHQFibJDHwSdy4Rykn2CjWywQAWw5+mGw8w==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://mirrors.cloud.tencent.com/npm/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -530,11 +535,11 @@
     fastq "^1.6.0"
 
 "@nuxt/kit@^3.2.0", "@nuxt/kit@^3.2.2":
-  version "3.2.2"
-  resolved "https://mirrors.cloud.tencent.com/npm/@nuxt/kit/-/kit-3.2.2.tgz#5b369122ce853f99ecaf8cddc950ad8c4ca47e58"
-  integrity sha512-T3UeLxGSNl7dQgKzmtBbPEkUiiBYgXI+KkemmpkYbQK/l+bWy2f9VQw/Rl0HkQLfRTE2fS8q8jhsOedFiEnHQQ==
+  version "3.2.3"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nuxt/kit/-/kit-3.2.3.tgz#97d8b4a4bedda4452ea18629c73c6301a964d492"
+  integrity sha512-wcsVlQLwGkh1cRhAFWHc3uYHdIxFTRNdRUzNyfqoX9DL0Fuga3K75q/PBY0xg1viA9R6F5BMPhc7KDLSWbXtWg==
   dependencies:
-    "@nuxt/schema" "3.2.2"
+    "@nuxt/schema" "3.2.3"
     c12 "^1.1.2"
     consola "^2.15.3"
     defu "^6.1.2"
@@ -553,10 +558,10 @@
     unimport "^2.2.4"
     untyped "^1.2.2"
 
-"@nuxt/schema@3.2.2":
-  version "3.2.2"
-  resolved "https://mirrors.cloud.tencent.com/npm/@nuxt/schema/-/schema-3.2.2.tgz#61a305f83df266c02b4018d840421fcf84d4ee51"
-  integrity sha512-o3O2OqLAMKqb/DlGpK8eJq4tH29NA4OMaohknSSXl35+Nw/qHB5eOLDz+cFxNE+MKHoMj1rRVMCfi/Y/PrCN6g==
+"@nuxt/schema@3.2.3":
+  version "3.2.3"
+  resolved "https://mirrors.cloud.tencent.com/npm/@nuxt/schema/-/schema-3.2.3.tgz#fe84483237a5f6177ebb051422cf556ffab80aa2"
+  integrity sha512-AXzRnBivCwn5RpNFWjUkvOPGPSHl5BM+6GfOpSNglPXi0tiQJ+rawSl7no7BkxGDmQ44Bx9AXwvHTrgjpcuo4g==
   dependencies:
     c12 "^1.1.2"
     create-require "^1.1.1"
@@ -568,7 +573,7 @@
     postcss-import-resolver "^2.0.0"
     scule "^1.0.0"
     std-env "^3.3.2"
-    ufo "^1.1.0"
+    ufo "^1.1.1"
     unimport "^2.2.4"
     untyped "^1.2.2"
 
@@ -1922,9 +1927,9 @@ electron-publish@23.6.0:
     mime "^2.5.2"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.313"
-  resolved "https://mirrors.cloud.tencent.com/npm/electron-to-chromium/-/electron-to-chromium-1.4.313.tgz#ff95f01926ab748c65beb23fc55f2f178e7a24a9"
-  integrity sha512-QckB9OVqr2oybjIrbMI99uF+b9+iTja5weFe0ePbqLb5BHqXOJUO1SG6kDj/1WtWPRIBr51N153AEq8m7HuIaA==
+  version "1.4.314"
+  resolved "https://mirrors.cloud.tencent.com/npm/electron-to-chromium/-/electron-to-chromium-1.4.314.tgz#33e4ad7a2ca2ddbe2e113874cc0c0e2a00cb46bf"
+  integrity sha512-+3RmNVx9hZLlc0gW//4yep0K5SYKmIvB5DXg1Yg6varsuAHlHwTeqeygfS8DWwLCsNOWrgj+p9qgM5WYjw1lXQ==
 
 electron-updater@^5.3.0:
   version "5.3.0"
@@ -1953,10 +1958,10 @@ electron-vite@^1.0.17:
     magic-string "^0.27.0"
     picocolors "^1.0.0"
 
-electron@^21.3.3:
-  version "21.4.2"
-  resolved "https://mirrors.cloud.tencent.com/npm/electron/-/electron-21.4.2.tgz#ec1088c48e479179ae1ea2749e939ac58137f304"
-  integrity sha512-AM2MbPUB7el/9O1UXL3xYA8pTDOPDxiT0HrLuXKkX8Oe0yCvjozNRzEac27gIUd1V/hg0BBvQuYjaRU1Rcxhyg==
+electron@21.3.3:
+  version "21.3.3"
+  resolved "https://mirrors.cloud.tencent.com/npm/electron/-/electron-21.3.3.tgz#66ddb22c337d8182eeece8b3c256a751f8e5bf76"
+  integrity sha512-2a9l8mUQlzXH/9WZrGYDJTyJOliLKbmEuCrQ8bfX1McAQOmI6PDQxfHV4qFUtyCDUp5SHrq5nuvg0c1pIkDBhg==
   dependencies:
     "@electron/get" "^1.14.1"
     "@types/node" "^16.11.26"
@@ -3159,9 +3164,9 @@ minimatch@^6.1.6, minimatch@^6.2.0:
     brace-expansion "^2.0.1"
 
 minimatch@^7.1.0:
-  version "7.3.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/minimatch/-/minimatch-7.3.0.tgz#cfb7337e7460308e7147c58250fa0dee3da7929c"
-  integrity sha512-WaMDuhKa7a6zKiwplR1AOz+zGvJba24k5VU1Cy6NhEguavT2YRlHxuINUgTas4wiS6fwBpYq4TcA1XIECSntyw==
+  version "7.4.1"
+  resolved "https://mirrors.cloud.tencent.com/npm/minimatch/-/minimatch-7.4.1.tgz#166705f9417985ba5149f2dbf2fa50c29832913b"
+  integrity sha512-Oz1iPEP+MGl7KS3SciLsLLcuZ7VsBfb7Qrz/jYt/s/sYAv272P26HSLz2f77Y6hzTKXiBi6g765fqpEDNc5fJw==
   dependencies:
     brace-expansion "^2.0.1"
 
@@ -4089,7 +4094,7 @@ typescript@^4.9.4:
   resolved "https://mirrors.cloud.tencent.com/npm/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
-ufo@^1.1.0:
+ufo@^1.1.0, ufo@^1.1.1:
   version "1.1.1"
   resolved "https://mirrors.cloud.tencent.com/npm/ufo/-/ufo-1.1.1.tgz#e70265e7152f3aba425bd013d150b2cdf4056d7c"
   integrity sha512-MvlCc4GHrmZdAllBc0iUDowff36Q9Ndw/UzqmEKyrfSzokTd9ZCy1i+IIk5hrYKkjoYVQyNbrw7/F8XJ2rEwTg==
