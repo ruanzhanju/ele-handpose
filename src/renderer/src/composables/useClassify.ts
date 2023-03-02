@@ -39,8 +39,10 @@ class Classify {
       audio: false,
       video: {
         deviceId: 'f84586c88c88b9d22fe22b9c7fda534e9489c0323ce23d6ee883798e856798d9',
-        // width: 640,
-        // height: 480
+        // height: 480,
+        // width: 640
+        height: 720, // 会尝试满足这个值
+        width: 1280
       }
       // eslint-disable-next-line no-undef
     } as MediaStreamConstraints

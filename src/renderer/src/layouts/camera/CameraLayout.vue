@@ -13,9 +13,11 @@ onMounted(() => {
   classify.run('#camera')
   classify.start(async (hand: Hand | undefined) => {
     if (hand) {
+      // TODO：对检测出的手势，做分类，将分类结果给主进程
       // await window.electron.ipcRenderer.invoke('')
       console.log('hand', hand)
     } else {
+      // TODO: 将空手势的结果给主进程
       // await window.electron.ipcRenderer.invoke('')
       // console.log('hand', hand)
     }

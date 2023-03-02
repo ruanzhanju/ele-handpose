@@ -1,7 +1,8 @@
 <script setup lang="ts"></script>
 
 <template>
-  <video class="camera" width="640" height="480"></video>
+  <!-- <video class="camera" height="480" width="640"></video> -->
+  <video class="camera" height="720" width="480"></video>
 </template>
 
 <style scoped lang="less">
