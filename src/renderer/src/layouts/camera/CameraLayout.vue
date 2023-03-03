@@ -3,27 +3,28 @@ import { Aim, Close, FullScreen } from '@element-plus/icons-vue'
 import { onMounted, ref } from 'vue'
 import Camera from '@renderer/components/Camera.vue'
 import useDrag from '@renderer/composables/useDrag'
-import useClassify from '@renderer/composables/useClassify'
-import { Hand } from '@tensorflow-models/hand-pose-detection'
+import useCamera from '@renderer/composables/useCamera'
+import useControlSystem from '@renderer/composables/useControlSystem'
 
 const { drag } = useDrag()
 drag.run()
-const { classify } = useClassify()
-onMounted(() => {
-  classify.run('#camera')
-  classify.start(async (hand: Hand | undefined) => {
-    if (hand) {
-      // TODO：对检测出的手势，做分类，将分类结果给主进程
-      // await window.electron.ipcRenderer.invoke('')
-      console.log('hand', hand)
-    } else {
-      // TODO: 将空手势的结果给主进程
-      // await window.electron.ipcRenderer.invoke('')
-      // console.log('hand', hand)
-    }
-  })
+const { camera } = useCamera()
+const isOpen = ref(false)
+const { controlSystem } = useControlSystem()
+onMounted(async () => {
+  camera.setVideoDom('#camera')
+  isOpen.value = true
+  await camera.open()
+  isOpen.value = camera.video?.paused ? false : true
+  await controlSystem.loadModels()
+  controlSystem.setCamera(camera)
+  controlSystem.run() // 注意：这里没有用await
 })
 const closeCamera = (): void => {
+  controlSystem.pause()
+  controlSystem.disposeModels()
+  camera.close()
+  isOpen.value = camera.video?.paused ? false : true
   window.electron.ipcRenderer.send('closeCameraMain')
 }
 
@@ -35,7 +36,7 @@ const shapeToggle = (): void => {
 </script>
 
 <template>
-  <main :class="{ 'rounded-full': circleShape }">
+  <main :class="{ 'rounded-full': circleShape, isOpen }">
     <Camera id="camera" />
     <el-button
       class="closeBtn"
@@ -71,6 +72,10 @@ const shapeToggle = (): void => {
 main {
   @apply w-screen h-screen flex relative overflow-hidden border-2 border-violet-300 transition-all;
   transition-timing-function: linear;
+  background: url('/src/assets/images/camera_off.png') no-repeat center 50%/50%;
+  &.isOpen {
+    background-image: url('/src/assets/images/camera.png');
+  }
   .closeBtn {
     @apply absolute left-1/2 top-0 -translate-x-1/2 hidden;
   }
