@@ -102,17 +102,17 @@ export class MouseState implements IState {
     switch (res.hanpose) {
       case MouseHandposeEnum.EMPTY:
         this.trySetTimer()
-        console.log('Empty')
-        // await window.electron.ipcRenderer.invoke('mouseControl:Main', res)
+        // console.log('Empty')
+        await window.electron.ipcRenderer.invoke('mouseControl:Main', res)
         break
       default:
         this.cleanTimer()
-        console.log('res.hanpose',res.hanpose)
-        // await window.electron.ipcRenderer.invoke('mouseControl:Main', res)
+        // console.log('res.hanpose',res.hanpose)
+        await window.electron.ipcRenderer.invoke('mouseControl:Main', res)
         break
     }
     if(this.isJump) {
-      audio.over()
+      audio.over() // 跳出mouse-state播放提示音
       this.isJump = false // isJump 复位
       this.timer = null
       this.system.setState(this.system.bideState)
@@ -121,15 +121,15 @@ export class MouseState implements IState {
   // 尝试设置定时器，准备跳回bide-state
   private trySetTimer() {
     if(!this.timer) {
-      console.log('setTimer')
+      // console.log('setTimer')
       this.timer = setTimeout(() => {
         this.isJump = true
-      }, 4000)
+      }, 3500)
     }
   }
   private cleanTimer() {
     if(this.timer) {
-      console.log('cleanTimer')
+      // console.log('cleanTimer')
       clearTimeout(this.timer as unknown as number)
       this.timer = null
     }

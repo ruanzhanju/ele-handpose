@@ -96,7 +96,7 @@ export class BideState implements IState {
       case BideHandposeEnum.EMPTY:
         return new Promise(resolve => {
           // console.log('延迟00ms...')
-          setTimeout(resolve, 700)
+          setTimeout(resolve, 800)
         })
       case BideHandposeEnum.DORSUM: // 手背
         return new Promise(resolve => {

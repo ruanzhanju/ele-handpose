@@ -1,5 +1,6 @@
 import { createVideoWindow} from '../windows/index'
 import { BrowserWindow, ipcMain } from 'electron'
+import { IMouseHandpose } from '../mode/mouseMode/mouse-model'
 let cameraWin: BrowserWindow | null = null
 export default () => {
   ipcMain.on('openCameraMain', () => {
@@ -14,5 +15,9 @@ export default () => {
     if(cameraWin) {
       cameraWin.close()
     }
+  })
+
+  ipcMain.handle('mouseControl:Main', (_, mouhanpose: IMouseHandpose) => {
+    console.log('mouhanpose',mouhanpose)
   })
 }
