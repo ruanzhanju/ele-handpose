@@ -1,6 +1,7 @@
 import { createVideoWindow} from '../windows/index'
 import { BrowserWindow, ipcMain } from 'electron'
-import { IMouseHandpose } from '../mode/mouseMode/mouse-model'
+import { IMouseHandpose } from '../controlMode/mouseMode/mouse-model'
+import { mouseMode } from '../controlMode/index'
 let cameraWin: BrowserWindow | null = null
 export default () => {
   ipcMain.on('openCameraMain', () => {
@@ -17,7 +18,13 @@ export default () => {
     }
   })
 
-  ipcMain.handle('mouseControl:Main', (_, mouhanpose: IMouseHandpose) => {
-    console.log('mouhanpose',mouhanpose)
+  // 鼠标控制方式：
+  ipcMain.handle('mouseControl:Main', async(_, mouhanpose: IMouseHandpose) => {
+    // console.log('index', mouhanpose.hanpose)
+    await mouseMode.updateBy(mouhanpose)
+    // console.log('mouhanpose',mouhanpose)
+  })
+  ipcMain.on('mouseControl-resetBase:Main', () => {
+    mouseMode.resetBaseVetor()
   })
 }

@@ -1,4 +1,4 @@
-import robot from "@/apis/mLearningApi/robot";
+import robot from 'robotjs'
 import { MouseHandposeEnum } from "../mouse-hanpose.enum";
 import { MouseMode } from "../mouse-mode.class";
 import { IState, IMouseHandpose } from "../mouse-model";
@@ -20,17 +20,17 @@ export class MouUpState implements IState {
         this.modeObj.setState(this.modeObj.bgState)
         break
       case MouseHandposeEnum.MOU_LEFT:
-        robot.mouseToggle({button: 'left', down: 'down'})
+        robot.mouseToggle('down', 'left')
         this.updateBaseVector(mouhanpose)
         this.modeObj.setState(this.modeObj.mouLeftState)
         break
       case MouseHandposeEnum.MOU_RIGHT:
-        robot.mouseToggle({button: 'right', down: 'down'})
+        robot.mouseToggle('down', 'right')
         this.updateBaseVector(mouhanpose)
         this.modeObj.setState(this.modeObj.mouRightState)
         break
       case MouseHandposeEnum.DOU_CLICK:
-        robot.mouseLeftBtnDoubleClick({})
+        robot.mouseClick('left', true) // 左键双击
         this.updateBaseVector(mouhanpose)
         this.modeObj.setState(this.modeObj.douClickState)
       case MouseHandposeEnum.MOU_UP:
@@ -48,6 +48,6 @@ export class MouUpState implements IState {
   // TODO: 需要限制一下偏移量不能过大
   private updateBaseVector(mouhanpose: IMouseHandpose) {
     this.modeObj.baseVetor.x += this.srcVector.x - mouhanpose.x
-    this.modeObj.baseVetor.y += this.srcVector.y - mouhanpose.y 
+    this.modeObj.baseVetor.y += this.srcVector.y - mouhanpose.y
   }
 }

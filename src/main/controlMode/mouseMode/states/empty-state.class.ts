@@ -1,4 +1,4 @@
-import robot from "@/apis/mLearningApi/robot";
+import robot from 'robotjs'
 import { MouseHandposeEnum } from "../mouse-hanpose.enum";
 import { MouseMode } from "../mouse-mode.class";
 import { IMouseHandpose, IState } from "../mouse-model";
@@ -11,26 +11,26 @@ export class EmptyState implements IState{
   async nextTick(mhandpose: IMouseHandpose) {
     switch (mhandpose.hanpose) {
       case MouseHandposeEnum.BG:
-        robot.moveMouse({x: mhandpose.x, y: mhandpose.y})
+        robot.moveMouse(mhandpose.x, mhandpose.y)
         this.modeObj.setState(this.modeObj.bgState)
         break
       case MouseHandposeEnum.MOU_LEFT:
-        robot.moveMouse({x: mhandpose.x, y: mhandpose.y})
-        robot.mouseToggle({button: 'left', down: 'down'})
+        robot.moveMouse(mhandpose.x, mhandpose.y)
+        robot.mouseToggle('down', 'left')
         this.modeObj.setState(this.modeObj.mouLeftState)
         break
       case MouseHandposeEnum.MOU_RIGHT:
-        robot.moveMouse({x: mhandpose.x, y: mhandpose.y})
-        robot.mouseToggle({button: 'right', down: 'down'})
+        robot.moveMouse(mhandpose.x, mhandpose.y)
+        robot.mouseToggle('down', 'right')
         this.modeObj.setState(this.modeObj.mouRightState)
         break
       case MouseHandposeEnum.DOU_CLICK:
-        robot.moveMouse({x: mhandpose.x, y: mhandpose.y})
-        robot.mouseLeftBtnDoubleClick({})
+        robot.moveMouse(mhandpose.x, mhandpose.y)
+        robot.mouseClick('left', true) // 左键双击
         this.modeObj.setState(this.modeObj.douClickState)
         break
       case MouseHandposeEnum.MOU_UP:
-        robot.moveMouse({x: mhandpose.x, y: mhandpose.y})
+        robot.moveMouse(mhandpose.x, mhandpose.y)
         this.modeObj.mouUpState.setSrcVector(mhandpose)
         this.modeObj.setState(this.modeObj.mouUpState)
         break

@@ -68,7 +68,7 @@ export class MouseState implements IState {
     }
   }
   // 使用hand对象分类，返回分类结果 {hanpose: number, x?:number, y?:number}
-  private predictHand(hand?: Hand):{hanpose: number, x?:number, y?:number} {
+  private predictHand(hand?: Hand) {
     if(hand) {
       const output = tf.tidy(() => {
         const handTensor = hpdata.getKeypoint3DTensor(hand) // hand=>tensor
@@ -90,15 +90,15 @@ export class MouseState implements IState {
           y: hand.keypoints[0].y
         }
       } else {
-        return {hanpose: -1}
+        return {hanpose: -1, x: -1, y: -1}
       }
     }
     else {
-      return {hanpose: -1}
+      return {hanpose: -1, x: -1, y: -1}
     }
   }
   // 根据分类结果选择做不同事情
-  private async switchWith(res: {hanpose: number, x?:number, y?:number}) {
+  private async switchWith(res: {hanpose: number, x:number, y:number}) {
     switch (res.hanpose) {
       case MouseHandposeEnum.EMPTY:
         this.trySetTimer()
@@ -115,6 +115,8 @@ export class MouseState implements IState {
       audio.over() // 跳出mouse-state播放提示音
       this.isJump = false // isJump 复位
       this.timer = null
+      // 复位偏移量
+      window.electron.ipcRenderer.send('mouseControl-resetBase:Main')
       this.system.setState(this.system.bideState)
     }
   }

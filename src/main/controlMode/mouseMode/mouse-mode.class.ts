@@ -1,6 +1,5 @@
-import { IState } from "./mouse-model"
+import { IMouseHandpose, IState } from "./mouse-model"
 import { BgState, DouClickState, EmptyState, MouLeftState, MouRightState, MouUpState } from "./states"
-
 
 export class MouseMode {
   // 手势的x、y坐标都要驾驶这个基向量，默认时（0，0）
@@ -8,10 +7,6 @@ export class MouseMode {
     x: 0,
     y: 0
   }
-  // 触发状态转换的次数
-  public countMax = 3 // 默认3
-  private count = 0 // 当前积累的次数
-  private preIndex = -1 // 上一个传入 updateBy 的index
   // 当前状态指针
   private curState: IState = null as unknown as IState
   // 所有状态
@@ -40,25 +35,15 @@ export class MouseMode {
    * @param {number} x 手腕节点x坐标，应该传入hand.keypoints[0].x
    * @param {number} y 手腕节点y坐标，应该传入hand.keypoints[0].y
    */
-  public async updateBy(index: number, x: number, y: number) {
-    this.updateCount(index) // 跟新this.count
-    // 如果 this.count === this.countMax
-    if(this.count === this.countMax) { // 则可以进行nextTick
-      // 叠加基向量, 生成hanpose 
-      // 状态模式 触发 Tick
-      await this.curState.nextTick({
-        hanpose: index,
-        x: this.baseVetor.x + x,
-        y: this.baseVetor.y + y
-      })
-    }
+  public async updateBy(mouhanpose: IMouseHandpose) {
+    // 叠加基向量, 生成hanpose
+    mouhanpose.x = this.baseVetor.x + mouhanpose.x
+    mouhanpose.y = this.baseVetor.y + mouhanpose.y
+    // 状态模式 触发 Tick
+    await this.curState.nextTick(mouhanpose)
   }
-  private updateCount(index: number) {
-    if(index === this.preIndex) {
-      if(this.count < this.countMax) ++this.count 
-    } else {
-      this.preIndex = index
-      this.count = 1
-    }
+  public resetBaseVetor(){
+    this.baseVetor.x = 0
+    this.baseVetor.y = 0
   }
 }

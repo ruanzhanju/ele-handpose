@@ -7,8 +7,8 @@ import { MouseHandposeEnum } from './mouse-hanpose.enum'
  */
 export interface IMouseHandpose {
   hanpose: number
-  x?: number,
-  y?: number
+  x: number,
+  y: number
 }
 
 interface IState<T=any> {

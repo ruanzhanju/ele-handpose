@@ -2,7 +2,6 @@ import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import { createWindow } from './windows'
 import { setupIpcMain } from './ipcMain'
-import robot from 'robotjs'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -26,9 +25,6 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
-  setTimeout(() => {
-    robot.moveMouseSmooth(100, 100)
-  }, 5000)
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

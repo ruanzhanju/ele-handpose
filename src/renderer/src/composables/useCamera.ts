@@ -16,6 +16,8 @@ export class Camera {
       deviceId: 'f84586c88c88b9d22fe22b9c7fda534e9489c0323ce23d6ee883798e856798d9',
       height: 720,
       width: 1183
+      // height: 426,
+      // width: 759
       /** 注意
        * video.height/video.width 必须接近 h/w = 0.6086(426/759)
        * 模型提取video的数据生成张量时，张量的shape与video.height和video.width有关
