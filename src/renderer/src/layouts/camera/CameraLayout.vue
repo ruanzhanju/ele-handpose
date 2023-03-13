@@ -36,7 +36,7 @@ const shapeToggle = (): void => {
 </script>
 
 <template>
-  <main :class="{ 'rounded-full': circleShape, isOpen }">
+  <main :class="{ 'rounded-full': circleShape, 'rounded-2xl': !circleShape, isOpen }">
     <Camera id="camera" />
     <el-button
       class="closeBtn"

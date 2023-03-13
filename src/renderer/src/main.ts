@@ -5,9 +5,11 @@ import '@renderer/assets/css/tailwind.css'
 // 这里引入element-ui的css,部分组件可能用到
 import 'element-plus/dist/index.css'
 import { setupRouter } from '@renderer/router'
+import { setupIconPark } from '@renderer/plugings/icon-park'
 
 async function bootstrap() {
   const app = createApp(App)
+  setupIconPark(app)
   await setupRouter(app)
   app.mount('#app')
 }

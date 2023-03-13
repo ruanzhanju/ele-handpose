@@ -23,6 +23,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.3",
     "@electron-toolkit/utils": "^1.0.2",
+    "@icon-park/vue-next": "^1.4.2",
     "@mediapipe/hands": "0.4.1646424915",
     "@tensorflow-models/hand-pose-detection": "2.0.0",
     "@tensorflow/tfjs": "3.21.0",
@@ -43,6 +44,7 @@
     "autoprefixer": "^10.4.13",
     "electron": "^23.1.2",
     "electron-builder": "^22.10.3",
+    "electron-rebuild": "^3.2.9",
     "electron-vite": "^1.0.17",
     "eslint": "^8.31.0",
     "eslint-plugin-vue": "^9.8.0",

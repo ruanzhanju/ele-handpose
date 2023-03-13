@@ -26,7 +26,7 @@
 
 <style scoped lang="less">
 .camera {
-  @apply object-cover;
+  @apply object-fill;
   transform: rotateY(180deg);
 }
 </style>
