@@ -7,16 +7,13 @@ import Menu from './Menu.vue'
 window.electron.ipcRenderer.on('ElNotification', (_, opt) => {
   ElNotification(opt)
 })
-function openCamera(): void {
-  window.electron.ipcRenderer.send('openCameraMain')
-}
 </script>
 
 <template>
   <main class="home-layout">
     <Menu />
     <div class="article">
-      <el-button @click="openCamera">打开摄像头</el-button>
+      <RouterView></RouterView>
     </div>
   </main>
 </template>
@@ -27,7 +24,7 @@ function openCamera(): void {
   display: grid;
   grid-template-columns: 60px minmax(400px, 1fr);
   .article {
-    @apply bg-gray-500;
+    @apply bg-gray-50;
   }
 }
 </style>
