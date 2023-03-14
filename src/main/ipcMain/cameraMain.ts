@@ -3,13 +3,26 @@ import { BrowserWindow, ipcMain } from 'electron'
 import { IMouseHandpose } from '../controlMode/mouseMode/mouse-model'
 import { mouseMode } from '../controlMode/index'
 let cameraWin: BrowserWindow | null = null
-export default () => {
-  ipcMain.on('openCameraMain', () => {
-    if(cameraWin) return
+// 摄像头定义
+interface Config {
+  deviceId:string
+}
+let config:Config = {} as Config
+export default (mainWin: BrowserWindow) => {
+  ipcMain.on('openCameraMain', (_, opt:Config) => {
+    if(cameraWin) {
+      mainWin.webContents.send('ElNotification', {type: 'warning', message: '功能已经开启'})
+      return
+    }
     cameraWin = createVideoWindow()
+    config = opt
     cameraWin.on('closed', () => {
       cameraWin = null
     })
+  })
+
+  ipcMain.handle('getConfig', () => {
+    return config
   })
 
   ipcMain.on('closeCameraMain', () => {

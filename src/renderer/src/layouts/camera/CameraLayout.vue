@@ -12,9 +12,10 @@ const { camera } = useCamera()
 const isOpen = ref(false)
 const { controlSystem } = useControlSystem()
 onMounted(async () => {
+  const config = await window.electron.ipcRenderer.invoke('getConfig')
   camera.setVideoDom('#camera')
   isOpen.value = true
-  await camera.open()
+  await camera.open(config?.deviceId)
   isOpen.value = camera.video?.paused ? false : true
   await controlSystem.loadModels()
   controlSystem.setCamera(camera)

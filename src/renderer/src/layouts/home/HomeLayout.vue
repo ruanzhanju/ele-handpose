@@ -24,7 +24,7 @@ window.electron.ipcRenderer.on('ElNotification', (_, opt) => {
   display: grid;
   grid-template-columns: 60px minmax(400px, 1fr);
   .article {
-    @apply bg-gray-50;
+    @apply bg-white;
   }
 }
 </style>

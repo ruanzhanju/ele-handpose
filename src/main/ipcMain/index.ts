@@ -1,9 +1,11 @@
 import { BrowserWindow, ipcMain } from 'electron'
 import cameraMain from './cameraMain'
+import mainMain from './mainMain'
 
 function setupIpcMain(mainWin: BrowserWindow):void {
-  cameraMain()
-  // 拖动功能
+  cameraMain(mainWin)
+  mainMain(mainWin)
+  // 窗口拖动功能
   ipcMain.on('dragMain', (event, opt:{x:number, y:number}) => {
     const win = BrowserWindow.fromWebContents(event.sender)
     if(win) {
@@ -13,11 +15,6 @@ function setupIpcMain(mainWin: BrowserWindow):void {
       // win.setSize(w, h)
     }
   })
-  // 转发: camera渲染进程=>主进程=>主渲染进程
-  ipcMain.on('Notification', (_, opt) => {
-    mainWin.webContents.send('ElNotification', opt)
-  })
-  // TODO: 接收分类结果，根据结果控制计算机鼠标或键盘
 }
 
 export {
