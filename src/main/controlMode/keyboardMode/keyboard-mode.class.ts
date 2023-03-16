@@ -2,14 +2,17 @@ import { IKeyMap } from "../../dao/type"
 import { KeyboardHandposeEnum } from "./keyboard-handpose.enum"
 import { IKeyboardHandpose } from "./keyboard-mode"
 import robot from 'robotjs'
+import keyMapDao from "../../dao/key-map-dao.class"
 
 export class KeyboardMode {
   private keyMap: IKeyMap
 
   constructor() {
+    // 安装一个默认keymap
     this.keyMap = {
       id: 'default',
       name: '默认方案',
+      notChange: true,
       strategies: {
         [KeyboardHandposeEnum.DOWN_A]: {
           key: 'down',
@@ -37,7 +40,17 @@ export class KeyboardMode {
         }
       }
     }
-    // console.log('this.keyMap',this.keyMap)
+    // keyMapDao.insert(this.keyMap).catch(err => {
+    //   console.log('err',err)
+    // })
+
+    keyMapDao.find('510b430f-6c18-475e-a28f-881158d9d425')
+      .then(res => {
+        this.keyMap = res!
+        // console.log('this.keyMap',this.keyMap)
+      }).catch(err => {
+        console.log('err',err)
+      })
   }
   // 根据id设置strategies策略对象
   public setKeyMapById(id:string) {

@@ -93,10 +93,10 @@ export class KeyboardState implements IState {
     }
   }
   private async switchWith(res: {hanpose: number}) {
+    this.trySetTimer()
     switch (res.hanpose) {
       case KeyboardHandposeEnum.BG:
       case KeyboardHandposeEnum.EMPTY:
-        this.trySetTimer()
         break;
       default:
         this.cleanTimer()
@@ -105,7 +105,8 @@ export class KeyboardState implements IState {
         break;
     }
     if(this.isJump) {
-      audio.over2() // 跳出mouse-state播放提示音
+      // 跳出mouse-state播放提示音:如果this.timer为null,则已经完成动作而跳出，否则为定时到时间而跳出
+      this.timer === null ? audio.over2() : audio.over()
       this.isJump = false // isJump 复位
       this.timer = null
       // 跳转

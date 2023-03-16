@@ -11,5 +11,6 @@ type TStrategies = {
 interface IKeyMap {
   id: string // id 唯一标识，uuidv4
   name: string // keyMap的名字
+  notChange?: boolean // 不能修改
   strategies: TStrategies // 策略
 }
