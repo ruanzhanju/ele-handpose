@@ -1,7 +1,8 @@
 import { createVideoWindow} from '../windows/index'
 import { BrowserWindow, ipcMain } from 'electron'
 import { IMouseHandpose } from '../controlMode/mouseMode/mouse-model'
-import { mouseMode } from '../controlMode/index'
+import { IKeyboardHandpose } from '../controlMode/keyboardMode/keyboard-mode'
+import { keyboardMode, mouseMode } from '../controlMode/index'
 let cameraWin: BrowserWindow | null = null
 // 用于保存摄像头定义
 interface Config {
@@ -39,5 +40,9 @@ export default (mainWin: BrowserWindow) => {
   })
   ipcMain.on('mouseControl-resetBase:Main', () => {
     mouseMode.resetBaseVetor()
+  })
+  // 键盘控制方式：
+  ipcMain.handle('keyboardControl:Main', async(_, keyhanpose: IKeyboardHandpose) => {
+    keyboardMode.controllKeyboard(keyhanpose)
   })
 }

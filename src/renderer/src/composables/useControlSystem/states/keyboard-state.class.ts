@@ -100,8 +100,7 @@ export class KeyboardState implements IState {
         break;
       default:
         this.cleanTimer()
-        // TODO: 将需要控制计算机的分类结果使用invoke发送给主线程
-        console.log('res.hanpose',res.hanpose)
+        await window.electron.ipcRenderer.invoke('keyboardControl:Main', res)
         this.isJump = true
         break;
     }
