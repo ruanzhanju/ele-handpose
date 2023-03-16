@@ -3,9 +3,9 @@ import { BrowserWindow, ipcMain } from 'electron'
 import { IMouseHandpose } from '../controlMode/mouseMode/mouse-model'
 import { mouseMode } from '../controlMode/index'
 let cameraWin: BrowserWindow | null = null
-// 摄像头定义
+// 用于保存摄像头定义
 interface Config {
-  deviceId:string
+  deviceId:string // 摄像机id
 }
 let config:Config = {} as Config
 export default (mainWin: BrowserWindow) => {

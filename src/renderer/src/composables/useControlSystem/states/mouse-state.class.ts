@@ -22,7 +22,7 @@ export class MouseState implements IState {
   private count = 0 // 当前积累的次数
   private preIndex = -1 // 上一个传入 的index
 
-  // 决定跳转会bide-state的属性：检测不到手势n=4秒，即empty n 秒，就返回bide
+  // 决定跳转会bide-state的属性：检测不到手势n=3500ms，即empty n 秒，就返回bide
   private timer:NodeJS.Timeout|null = null
   private isJump = false
 
@@ -35,6 +35,8 @@ export class MouseState implements IState {
     this.model?.dispose()
     this.minMax?.max.forEach(scaler => scaler.dispose())
     this.minMax?.min.forEach(scalar => scalar.dispose())
+    this.model = null
+    this.minMax = void 0
   }
   // 加载模型
   public async loadModel() {

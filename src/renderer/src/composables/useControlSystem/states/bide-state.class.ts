@@ -31,6 +31,8 @@ export class BideState implements IState {
     this.model?.dispose()
     this.minMax?.max.forEach(scaler => scaler.dispose())
     this.minMax?.min.forEach(scalar => scalar.dispose())
+    this.model = null
+    this.minMax = void 0
   }
   // 加载模型
   public async loadModel() {
@@ -110,9 +112,9 @@ export class BideState implements IState {
         return new Promise(resolve => {
           audio.start()
           setTimeout(() => {
-            // this.system.setState(this.system.keyboardState)
+            this.system.setState(this.system.keyboardState)
             resolve(undefined)
-          }, 500)
+          }, 800)
         })
       default:
         break;
