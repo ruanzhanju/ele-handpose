@@ -1,7 +1,11 @@
+<script setup lang="ts">
+import AnimationHeader from '@renderer/components/AnimationHeader.vue'
+</script>
+
 <template>
-  <div class="h-full">设置</div>
+  <div class="h-full">
+    <AnimationHeader />
+  </div>
 </template>
 
-<script setup lang="ts"></script>
-
-<style scoped></style>
+<style lang="less" scoped></style>
