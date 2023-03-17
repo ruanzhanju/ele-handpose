@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     AnimationHeader: typeof import('./src/components/AnimationHeader.vue')['default']
     Camera: typeof import('./src/components/Camera.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElDivider: typeof import('element-plus/es')['ElDivider']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']

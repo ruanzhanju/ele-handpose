@@ -7,6 +7,8 @@ export function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 570,
+    minWidth: 600,
+    minHeight: 400,
     show: false,
     autoHideMenuBar: true,
     // 隐形窗口 transparent:true+frame: false

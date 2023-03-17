@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div id="randColorAnimation">Set up personal plans</div>
+    <div id="randColorAnimation">自定义手势快捷键</div>
   </header>
 </template>
 
@@ -46,20 +46,17 @@ onMounted(() => {
     grid-auto-flow: column;
     white-space: pre;
     font-size: 2.25rem;
-  }
-  &:hover {
-    #randColorAnimation {
-      :deep(div) {
-        animation: myscale 0.5s;
-      }
+    :deep(div) {
+      animation: myscale 0.5s;
     }
   }
 }
 
 @keyframes myscale {
   50% {
-    margin: 0 1rem;
-    transform: scale(3);
+    margin: 0 1.5rem;
+    transform: scale(2);
+    text-shadow: rgba(13, 6, 89, 0.8) 3px 3px 5px;
   }
   to {
     transform: scale(1);

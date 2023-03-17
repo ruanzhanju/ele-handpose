@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import Setting from '@renderer/components/Setting.vue'
 import useConfig from '@renderer/composables/useConfig'
+import { onActivated } from 'vue'
 const { config } = useConfig()
-config.reflesh()
-config.reloadKeyMapList()
+onActivated(async () => {
+  await config.reflesh()
+  await config.reloadKeyMapList()
+})
 // 开启功能
 const openCamera = async (): Promise<void> => {
   window.electron.ipcRenderer.send('openCameraMain', {

@@ -11,9 +11,13 @@ window.electron.ipcRenderer.on('ElNotification', (_, opt) => {
 
 <template>
   <main class="home-layout">
-    <Menu />
+    <Menu class="h-screen" />
     <div class="article">
-      <RouterView></RouterView>
+      <RouterView v-slot="{ Component }">
+        <keep-alive :max="3">
+          <component :is="Component"></component>
+        </keep-alive>
+      </RouterView>
     </div>
   </main>
 </template>
@@ -24,7 +28,7 @@ window.electron.ipcRenderer.on('ElNotification', (_, opt) => {
   display: grid;
   grid-template-columns: 60px minmax(400px, 1fr);
   .article {
-    @apply bg-white;
+    @apply h-screen bg-white;
   }
 }
 </style>
