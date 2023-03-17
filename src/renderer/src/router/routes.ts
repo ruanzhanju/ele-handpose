@@ -26,7 +26,7 @@ const routes = [
       {
         path: 'mySetting',
         name: 'home.mySetting',
-        component: () => import('@renderer/views/MySetting.vue'),
+        component: () => import('@renderer/views/Personal.vue'),
         meta: {
           menuItem: {
             title: '我的配置',

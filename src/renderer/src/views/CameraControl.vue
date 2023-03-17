@@ -14,17 +14,19 @@ const openCamera = async (): Promise<void> => {
 </script>
 
 <template>
-  <div>
+  <div class="h-full flex flex-col">
     <header class="w-full h-24 flex justify-center items-center gap-8 bg-[#2c3e50]">
       <div class="scale-125">
         <i-cool theme="two-tone" size="48" :fill="['#5b21b6', '#ffffff']" :stroke-width="3" />
       </div>
       <h1 class="app-name">Ele-Handpose</h1>
     </header>
-    <div class="flex justify-center items-center py-8">
-      <button class="toggle-handpose-function-btn" @click="openCamera">开启手势控制功能</button>
-    </div>
-    <Setting></Setting>
+    <main class="flex-1 overflow-y-auto">
+      <div class="flex justify-center items-center py-8">
+        <button class="toggle-handpose-function-btn" @click="openCamera">开启手势控制功能</button>
+      </div>
+      <Setting></Setting>
+    </main>
   </div>
 </template>
 

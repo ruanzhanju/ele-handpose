@@ -78,7 +78,7 @@ const shapeToggle = (): void => {
 
 <style scoped lang="less">
 main {
-  @apply w-screen h-screen flex relative overflow-y-scroll border-2 border-violet-300 transition-all;
+  @apply w-screen h-screen flex relative overflow-hidden border-2 border-violet-300 transition-all;
   transition-timing-function: linear;
   background: url('/src/assets/images/camera_off.png') no-repeat center 50%/50%;
   &.isOpen {
