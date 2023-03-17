@@ -4,6 +4,7 @@ import { existsSync } from 'fs'
 import { app } from 'electron'
 import { IKeyMap } from "./type"
 import uuid from 'uuid'
+import { KeyboardHandposeEnum } from "../controlMode/keyboardMode/keyboard-handpose.enum"
 
 const {v4: uuidv4} = uuid
 
@@ -15,7 +16,40 @@ export class KeyMapDao {
   public async findAll() {
     if(!existsSync(default_db_url)) {
       await mkdir(default_db_dir, {recursive: true})
-      await writeFile(default_db_url, JSON.stringify([]), 'utf-8')
+      // db不存在自动添加一个默认方案
+      await writeFile(default_db_url, JSON.stringify([
+        {
+          id: 'default',
+          name: '默认方案',
+          notChange: true,
+          strategies: {
+            [KeyboardHandposeEnum.DOWN_A]: {
+              key: 'down',
+              modifier: []
+            },
+            [KeyboardHandposeEnum.DOWN_B]: {
+              key: 'pagedown',
+              modifier: []
+            },
+            [KeyboardHandposeEnum.LEFT_A]: {
+              key: 'left',
+              modifier: []
+            },
+            [KeyboardHandposeEnum.RIGHT_A]: {
+              key: 'right',
+              modifier: []
+            },
+            [KeyboardHandposeEnum.UP_A]: {
+              key: 'up',
+              modifier: []
+            },
+            [KeyboardHandposeEnum.UP_B]: {
+              key: 'pageup',
+              modifier: []
+            }
+          }
+        }
+      ]), 'utf-8')
     }
     const content = await readFile(default_db_url, 'utf-8')
     const keyMapList = JSON.parse(content) as IKeyMap[]

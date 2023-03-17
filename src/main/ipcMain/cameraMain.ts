@@ -7,6 +7,7 @@ let cameraWin: BrowserWindow | null = null
 // 用于保存摄像头定义
 interface Config {
   deviceId:string // 摄像机id
+  keyMapId: string // 手势-快捷键映射方案
 }
 let config:Config = {} as Config
 export default (mainWin: BrowserWindow) => {
@@ -44,5 +45,9 @@ export default (mainWin: BrowserWindow) => {
   // 键盘控制方式：
   ipcMain.handle('keyboardControl:Main', async(_, keyhanpose: IKeyboardHandpose) => {
     keyboardMode.controllKeyboard(keyhanpose)
+  })
+  // 设置当前keyMap
+  ipcMain.handle('set:keyMap', async(_, opt: {keyMapId:string}) => {
+    await keyboardMode.setKeyMapById(opt.keyMapId)
   })
 }

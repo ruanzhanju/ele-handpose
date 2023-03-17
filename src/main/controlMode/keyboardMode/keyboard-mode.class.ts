@@ -1,60 +1,20 @@
-import { IKeyMap } from "../../dao/type"
-import { KeyboardHandposeEnum } from "./keyboard-handpose.enum"
-import { IKeyboardHandpose } from "./keyboard-mode"
 import robot from 'robotjs'
 import keyMapDao from "../../dao/key-map-dao.class"
+import { IKeyMap } from "../../dao/type"
+import { IKeyboardHandpose } from "./keyboard-mode"
 
 export class KeyboardMode {
-  private keyMap: IKeyMap
+  private keyMap = {} as IKeyMap
 
-  constructor() {
-    // 安装一个默认keymap
-    this.keyMap = {
-      id: 'default',
-      name: '默认方案',
-      notChange: true,
-      strategies: {
-        [KeyboardHandposeEnum.DOWN_A]: {
-          key: 'down',
-          modifier: []
-        },
-        [KeyboardHandposeEnum.DOWN_B]: {
-          key: 'pagedown',
-          modifier: []
-        },
-        [KeyboardHandposeEnum.LEFT_A]: {
-          key: 'left',
-          modifier: []
-        },
-        [KeyboardHandposeEnum.RIGHT_A]: {
-          key: 'right',
-          modifier: []
-        },
-        [KeyboardHandposeEnum.UP_A]: {
-          key: 'up',
-          modifier: []
-        },
-        [KeyboardHandposeEnum.UP_B]: {
-          key: 'pageup',
-          modifier: []
-        }
-      }
-    }
-    // keyMapDao.insert(this.keyMap).catch(err => {
-    //   console.log('err',err)
-    // })
-
-    keyMapDao.find('510b430f-6c18-475e-a28f-881158d9d425')
-      .then(res => {
-        this.keyMap = res!
-        // console.log('this.keyMap',this.keyMap)
-      }).catch(err => {
-        console.log('err',err)
-      })
-  }
   // 根据id设置strategies策略对象
-  public setKeyMapById(id:string) {
-
+  public async setKeyMapById(id:string) {
+    let keyMap = await keyMapDao.find(id)
+    if(!keyMap) {
+      keyMap = await keyMapDao.find('default')
+    } else {
+      console.log('sucess')
+    }
+    this.keyMap = keyMap!
   }
   // 根据手势分类结果进行计算机键盘控制
   public controllKeyboard(keyhanpose: IKeyboardHandpose) {

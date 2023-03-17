@@ -3,10 +3,12 @@ import Setting from '@renderer/components/Setting.vue'
 import useConfig from '@renderer/composables/useConfig'
 const { config } = useConfig()
 config.reflesh()
+config.reloadKeyMapList()
 // 开启功能
 const openCamera = async (): Promise<void> => {
   window.electron.ipcRenderer.send('openCameraMain', {
-    deviceId: config.deviceId.value
+    deviceId: config.deviceId.value,
+    keyMapId: config.keyMapId.value
   })
 }
 </script>

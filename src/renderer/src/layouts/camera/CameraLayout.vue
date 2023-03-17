@@ -5,20 +5,27 @@ import Camera from '@renderer/components/Camera.vue'
 import useDrag from '@renderer/composables/useDrag'
 import useCamera from '@renderer/composables/useCamera'
 import useControlSystem from '@renderer/composables/useControlSystem'
-
+interface Config {
+  deviceId: string // 摄像机id
+  keyMapId: string // 手势-快捷键映射方案
+}
 const { drag } = useDrag()
 drag.run()
 const { camera } = useCamera()
 const isOpen = ref(false)
 const { controlSystem } = useControlSystem()
 onMounted(async () => {
-  const config = await window.electron.ipcRenderer.invoke('getConfig')
-  camera.setVideoDom('#camera')
+  const config = (await window.electron.ipcRenderer.invoke('getConfig')) as Config // 获取摄像头，映射方案等配置
+  camera.setVideoDom('#camera') // 设置摄像投dom
+  // 根据config打开摄像投
   isOpen.value = true
-  await camera.open(config?.deviceId)
+  await camera.open(config.deviceId)
   isOpen.value = camera.video?.paused ? false : true
-  await controlSystem.loadModels()
-  controlSystem.setCamera(camera)
+
+  await window.electron.ipcRenderer.invoke('set:keyMap', { keyMapId: config.keyMapId })
+
+  await controlSystem.loadModels() // 加载bide/mouse/keyboard 三个状态的模型
+  controlSystem.setCamera(camera) // 控制系统连接摄像头
   controlSystem.run() // 注意：这里没有用await
 })
 const closeCamera = (): void => {
@@ -71,7 +78,7 @@ const shapeToggle = (): void => {
 
 <style scoped lang="less">
 main {
-  @apply w-screen h-screen flex relative overflow-hidden border-2 border-violet-300 transition-all;
+  @apply w-screen h-screen flex relative overflow-y-scroll border-2 border-violet-300 transition-all;
   transition-timing-function: linear;
   background: url('/src/assets/images/camera_off.png') no-repeat center 50%/50%;
   &.isOpen {

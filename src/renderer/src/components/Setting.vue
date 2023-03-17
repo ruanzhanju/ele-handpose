@@ -21,7 +21,14 @@ const { config } = useConfig()
           </el-select>
         </el-form-item>
         <el-form-item label="键盘手势映射方案">
-          <el-select class="w-80"></el-select>
+          <el-select v-model="config.keyMapId.value" class="w-80">
+            <el-option
+              v-for="km in config.keyMapList.value"
+              :key="km.id"
+              :label="km.name"
+              :value="km.id"
+            ></el-option>
+          </el-select>
         </el-form-item>
       </el-form>
     </div>
