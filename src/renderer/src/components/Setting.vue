@@ -7,7 +7,7 @@ const { config } = useConfig()
 
 <template>
   <div class="mx-4 border-t-2">
-    <h1 class="mt-4 flex justify-center text-lg text-gray-400">配置参数</h1>
+    <h1 class="mt-4 flex justify-center font-bold text-lg text-gray-400">配置参数</h1>
     <div class="flex justify-center">
       <el-form label-position="top">
         <el-form-item label="摄像头">

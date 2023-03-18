@@ -25,27 +25,51 @@ export class KeyMapDao {
           strategies: {
             [KeyboardHandposeEnum.DOWN_A]: {
               key: 'down',
-              modifier: []
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.DOWN_A],
+              note: '方向键down'
             },
             [KeyboardHandposeEnum.DOWN_B]: {
               key: 'pagedown',
-              modifier: []
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.DOWN_B],
+              note: 'pagedown'
             },
             [KeyboardHandposeEnum.LEFT_A]: {
               key: 'left',
-              modifier: []
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.LEFT_A],
+              note: '方向键left'
+            },
+            [KeyboardHandposeEnum.LEFT_B]: {
+              key: 'left',
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.LEFT_B],
+              note: '方向键left'
             },
             [KeyboardHandposeEnum.RIGHT_A]: {
               key: 'right',
-              modifier: []
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.RIGHT_A],
+              note: '方向键right'
+            },
+            [KeyboardHandposeEnum.RIGHT_B]: {
+              key: 'right',
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.RIGHT_B],
+              note: '方向键right'
             },
             [KeyboardHandposeEnum.UP_A]: {
               key: 'up',
-              modifier: []
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.UP_A],
+              note: '方向键up'
             },
             [KeyboardHandposeEnum.UP_B]: {
               key: 'pageup',
-              modifier: []
+              modifier: [],
+              name: KeyboardHandposeEnum[KeyboardHandposeEnum.UP_B],
+              note: 'pageup'
             }
           }
         }

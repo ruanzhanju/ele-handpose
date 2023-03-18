@@ -5,7 +5,10 @@ import { onActivated } from 'vue'
 const { config } = useConfig()
 onActivated(async () => {
   await config.reflesh()
-  await config.reloadKeyMapList()
+  // 如果keyMapList长度为0，则没有加载过，应该加载
+  if (!config.keyMapList.value.length) {
+    await config.reloadKeyMapList()
+  }
 })
 // 开启功能
 const openCamera = async (): Promise<void> => {

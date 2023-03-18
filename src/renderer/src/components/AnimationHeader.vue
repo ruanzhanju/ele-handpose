@@ -5,12 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onActivated, onMounted } from 'vue'
 
 class RandColorAnimation {
-  constructor(private el: HTMLDivElement, private text = [...el.innerHTML]) {
-    this.el.innerHTML = ''
-  }
+  constructor(private el: HTMLDivElement, private text = [...el.innerHTML]) {}
   private randomColorValue(): string {
     const arr = ['7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
     return arr[Math.floor(Math.random() * arr.length)]
@@ -25,6 +23,7 @@ class RandColorAnimation {
     )
   }
   public run(): void {
+    this.el.innerHTML = ''
     this.text.forEach((str, i) => {
       this.el.insertAdjacentHTML(
         'beforeend',
@@ -33,8 +32,12 @@ class RandColorAnimation {
     })
   }
 }
+let animation: RandColorAnimation
 onMounted(() => {
-  new RandColorAnimation(document.querySelector('#randColorAnimation')!).run()
+  animation = new RandColorAnimation(document.querySelector('#randColorAnimation')!)
+})
+onActivated(() => {
+  animation.run()
 })
 </script>
 
