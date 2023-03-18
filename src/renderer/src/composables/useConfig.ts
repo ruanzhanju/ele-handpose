@@ -1,6 +1,7 @@
+import { ElNotification } from "element-plus"
+import { cloneDeep } from 'lodash-es'
 import { Ref, ref } from "vue"
 import { KeyboardHandposeEnum } from "./useControlSystem/enums"
-import { cloneDeep } from 'lodash-es'
 
 
 type T1 = {
@@ -28,6 +29,8 @@ class Config {
   public keyMapList: Ref<TKeyMap[]> = ref([]) // 可用的快捷键映射方案
   public keyMapId:Ref<string> = ref('default') // 选择的快捷键映射方案的id
   public operatekm = ref({}) as Ref<TKeyMap> // KeyMapItemList 正在操的keymap
+  public fromDisable = ref(true) // 表单是否禁用
+  public drawervisable = ref(false)
 
   constructor() {
     // 有设备变化
@@ -45,6 +48,7 @@ class Config {
   // 重新从主进程获取keyMapList
   public async reloadKeyMapList() {
     this.keyMapList.value = await window.electron.ipcRenderer.invoke('get:keyMapList')
+    // console.log('this.keyMapList',this.keyMapList.value)
   }
   public setOperateKeyMap(km: TKeyMap) {
     const index = this.keyMapList.value.findIndex(keymap => keymap.id === km.id)
@@ -59,8 +63,8 @@ class Config {
     const defaultkm = this.keyMapList.value.find(km => km.id === 'default')
     const emptykm = cloneDeep(defaultkm)
     if(emptykm) {
-      emptykm.id = 'undefined',
-      emptykm.name = '',
+      emptykm.id = null as unknown as string
+      emptykm.name = ''
       emptykm.notChange = false
       Object.entries(emptykm.strategies).forEach(([numkey, value]) => {
         emptykm.strategies[numkey].key = '',
@@ -73,6 +77,24 @@ class Config {
     // console.log('defaultkm',defaultkm) // Proxy 响应数据
     // console.log('emptykm',emptykm) // 普通对象
     // console.log(emptykm === defaultkm) // false
+  }
+  // check 添加/修改operatekm属性
+  public async addOrUpdateOperateKeyMap() {
+    if(this.operatekm.value.name.toString().trim().length === 0) {
+      return
+    }
+    if(this.operatekm.value.id) { // 修改
+      await window.electron.ipcRenderer.invoke('update:keyMap', JSON.parse(JSON.stringify(this.operatekm.value)))
+    } else { // 添加
+      await window.electron.ipcRenderer.invoke('add:keyMap', JSON.parse(JSON.stringify(this.operatekm.value)))
+    }
+    this.reloadKeyMapList()
+    this.drawervisable.value = false
+  }
+  // 删除一个keyMap
+  public async delKeyMap(km: TKeyMap) {
+    await window.electron.ipcRenderer.invoke('delete:keyMap', km.id)
+    this.reloadKeyMapList()
   }
 }
 const config = new Config()

@@ -17,63 +17,7 @@ export class KeyMapDao {
     if(!existsSync(default_db_url)) {
       await mkdir(default_db_dir, {recursive: true})
       // db不存在自动添加一个默认方案
-      await writeFile(default_db_url, JSON.stringify([
-        {
-          id: 'default',
-          name: '默认方案',
-          notChange: true,
-          strategies: {
-            [KeyboardHandposeEnum.DOWN_A]: {
-              key: 'down',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.DOWN_A],
-              note: '方向键down'
-            },
-            [KeyboardHandposeEnum.DOWN_B]: {
-              key: 'pagedown',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.DOWN_B],
-              note: 'pagedown'
-            },
-            [KeyboardHandposeEnum.LEFT_A]: {
-              key: 'left',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.LEFT_A],
-              note: '方向键left'
-            },
-            [KeyboardHandposeEnum.LEFT_B]: {
-              key: 'left',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.LEFT_B],
-              note: '方向键left'
-            },
-            [KeyboardHandposeEnum.RIGHT_A]: {
-              key: 'right',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.RIGHT_A],
-              note: '方向键right'
-            },
-            [KeyboardHandposeEnum.RIGHT_B]: {
-              key: 'right',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.RIGHT_B],
-              note: '方向键right'
-            },
-            [KeyboardHandposeEnum.UP_A]: {
-              key: 'up',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.UP_A],
-              note: '方向键up'
-            },
-            [KeyboardHandposeEnum.UP_B]: {
-              key: 'pageup',
-              modifier: [],
-              name: KeyboardHandposeEnum[KeyboardHandposeEnum.UP_B],
-              note: 'pageup'
-            }
-          }
-        }
-      ]), 'utf-8')
+      await this.init_db()
     }
     const content = await readFile(default_db_url, 'utf-8')
     const keyMapList = JSON.parse(content) as IKeyMap[]
@@ -118,6 +62,65 @@ export class KeyMapDao {
   private async writeback(list: IKeyMap[]) {
     list = list || []
     await writeFile(default_db_url, JSON.stringify(list), 'utf-8')
+  }
+  private async init_db() {
+    await writeFile(default_db_url, JSON.stringify([
+      {
+        id: 'default',
+        name: '默认方案',
+        notChange: true,
+        strategies: {
+          [KeyboardHandposeEnum.DOWN_A]: {
+            key: 'down',
+            modifier: [],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.DOWN_A],
+            note: '方向键down'
+          },
+          [KeyboardHandposeEnum.DOWN_B]: {
+            key: 'pagedown',
+            modifier: [],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.DOWN_B],
+            note: 'pagedown'
+          },
+          [KeyboardHandposeEnum.LEFT_A]: {
+            key: 'left',
+            modifier: ['alt'],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.LEFT_A],
+            note: 'alt+left:浏览器后退'
+          },
+          [KeyboardHandposeEnum.LEFT_B]: {
+            key: 'left',
+            modifier: [],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.LEFT_B],
+            note: '方向键left'
+          },
+          [KeyboardHandposeEnum.RIGHT_A]: {
+            key: 'right',
+            modifier: ['alt'],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.RIGHT_A],
+            note: 'alt+left:浏览器前进'
+          },
+          [KeyboardHandposeEnum.RIGHT_B]: {
+            key: 'right',
+            modifier: [],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.RIGHT_B],
+            note: '方向键right'
+          },
+          [KeyboardHandposeEnum.UP_A]: {
+            key: 'up',
+            modifier: [],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.UP_A],
+            note: '方向键up'
+          },
+          [KeyboardHandposeEnum.UP_B]: {
+            key: 'pageup',
+            modifier: [],
+            name: KeyboardHandposeEnum[KeyboardHandposeEnum.UP_B],
+            note: 'pageup'
+          }
+        }
+      }
+    ]), 'utf-8')
   }
 }
 
