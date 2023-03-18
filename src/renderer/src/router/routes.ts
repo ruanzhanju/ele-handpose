@@ -36,19 +36,20 @@ const routes = [
           }
         }
       },
-      {
-        path: 'upAndDownLoad',
-        name: 'home.upAndDownLoad',
-        component: () => import('@renderer/views/UpAndDownLoad.vue'),
-        meta: {
-          menuItem: {
-            title: '上传与下载',
-            icon: 'i-sort-three',
-            props: { theme: 'outline', size: '32', fill: '#828585', 'stroke-width': 2 },
-            sort: 3
-          }
-        }
-      },
+      // TODO：该路由页面暂时不开发
+      // {
+      //   path: 'upAndDownLoad',
+      //   name: 'home.upAndDownLoad',
+      //   component: () => import('@renderer/views/UpAndDownLoad.vue'),
+      //   meta: {
+      //     menuItem: {
+      //       title: '上传与下载',
+      //       icon: 'i-sort-three',
+      //       props: { theme: 'outline', size: '32', fill: '#828585', 'stroke-width': 2 },
+      //       sort: 3
+      //     }
+      //   }
+      // },
       {
         path: 'about',
         name: 'home.about',

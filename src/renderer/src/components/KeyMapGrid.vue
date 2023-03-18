@@ -71,7 +71,7 @@ const check = async (): Promise<void> => {
       <section class="card-content">
         <h5 class="name">{{ km.name }}</h5>
         <span class="operation">
-          <i-view-grid-list
+          <i-align-text-both-one
             class="icon"
             theme="filled"
             size="30"

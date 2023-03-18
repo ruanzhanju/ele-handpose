@@ -18,6 +18,7 @@ export default (mainWin: BrowserWindow) => {
     }
     cameraWin = createVideoWindow()
     config = opt
+
     cameraWin.on('closed', () => {
       cameraWin = null
     })

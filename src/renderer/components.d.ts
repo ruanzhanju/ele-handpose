@@ -10,6 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AnimationHeader: typeof import('./src/components/AnimationHeader.vue')['default']
+    AnimationHeader2: typeof import('./src/components/AnimationHeader2.vue')['default']
     Camera: typeof import('./src/components/Camera.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']

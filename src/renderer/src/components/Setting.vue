@@ -3,6 +3,10 @@ import useConfig from '@renderer/composables/useConfig'
 import { ElForm, ElFormItem, ElOption, ElSelect } from 'element-plus'
 
 const { config } = useConfig()
+const onKeyMapChange = (keyMapId: string): void => {
+  // console.log('keyMapId', keyMapId)
+  window.electron.ipcRenderer.invoke('set:keyMap', { keyMapId })
+}
 </script>
 
 <template>
@@ -21,7 +25,7 @@ const { config } = useConfig()
           </el-select>
         </el-form-item>
         <el-form-item label="手势快捷键方案">
-          <el-select v-model="config.keyMapId.value" class="w-80">
+          <el-select v-model="config.keyMapId.value" class="w-80" @change="onKeyMapChange">
             <el-option
               v-for="km in config.keyMapList.value"
               :key="km.id"

@@ -11,9 +11,8 @@ export class KeyboardMode {
     let keyMap = await keyMapDao.find(id)
     if(!keyMap) {
       keyMap = await keyMapDao.find('default')
-    } else {
-      console.log('sucess')
     }
+    // console.log('set keyMap 设置方案')
     this.keyMap = keyMap!
   }
   // 根据手势分类结果进行计算机键盘控制

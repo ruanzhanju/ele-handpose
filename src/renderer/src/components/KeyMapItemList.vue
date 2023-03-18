@@ -48,7 +48,7 @@ const rules = reactive<FormItemRule>({
         :style="{ width: 'auto', height: '200px' }"
       >
         <el-form-item :key="strategy.name + 'key'" label="key">
-          <el-input v-model.trim="strategy.key" placeholder="键名"></el-input>
+          <el-input v-model.trim="strategy.key"></el-input>
         </el-form-item>
         <el-form-item :key="strategy.name + 'modifier'" label="modifier">
           <el-checkbox-group v-model="strategy.modifier">
@@ -59,11 +59,7 @@ const rules = reactive<FormItemRule>({
           </el-checkbox-group>
         </el-form-item>
         <el-form-item :key="strategy.name + 'note'" label="说明">
-          <el-input
-            v-model.trim="strategy.note"
-            placeholder="这个手势的作用..."
-            clearable
-          ></el-input>
+          <el-input v-model.trim="strategy.note" clearable></el-input>
         </el-form-item>
       </el-card>
     </el-form>
