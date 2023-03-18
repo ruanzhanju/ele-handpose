@@ -13,7 +13,6 @@ declare module '@vue/runtime-core' {
     AnimationHeader2: typeof import('./src/components/AnimationHeader2.vue')['default']
     Camera: typeof import('./src/components/Camera.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElDrawer: typeof import('element-plus/es')['ElDrawer']
     KeyMapGrid: typeof import('./src/components/KeyMapGrid.vue')['default']
     KeyMapItemList: typeof import('./src/components/KeyMapItemList.vue')['default']
     NotFound: typeof import('./src/components/NotFound.vue')['default']

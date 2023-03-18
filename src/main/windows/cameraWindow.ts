@@ -4,7 +4,7 @@ import { join } from 'path'
 
 export function createVideoWindow() {
   const primaryDisplay = screen.getPrimaryDisplay()
-  const {width, height} = primaryDisplay.workAreaSize
+  const {width} = primaryDisplay.workAreaSize
   const WIDTH = 200, HEIGHT = 200
   const videoWindow = new BrowserWindow({
     show: false,
