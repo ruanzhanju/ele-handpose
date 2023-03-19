@@ -128,7 +128,7 @@ export class MouseState implements IState {
       // console.log('setTimer')
       this.timer = setTimeout(() => {
         this.isJump = true
-      }, 3500)
+      }, 3000)
     }
   }
   private cleanTimer() {

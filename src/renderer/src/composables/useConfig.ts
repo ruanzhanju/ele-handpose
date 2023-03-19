@@ -39,8 +39,9 @@ class Config {
   public async reflesh(){
     const devices = await navigator.mediaDevices.enumerateDevices()
     this.cameras.value = devices.filter((d) => d.kind.includes('video'))
-    // 如果存在摄像头且用户没有选择，则选择第一个
-    if(this.deviceId.value === '' && this.cameras.value.length) {
+    // 如果存在摄像头且用户没有选择或者原本的摄像头不存在，则选择第一个
+    const device = this.cameras.value.find(dev => dev.deviceId === this.deviceId.value)
+    if((this.deviceId.value === '' || !device) && this.cameras.value.length) {
       this.deviceId.value = this.cameras.value[0].deviceId
     }
   }
