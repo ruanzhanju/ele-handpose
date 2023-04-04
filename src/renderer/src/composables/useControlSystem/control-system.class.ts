@@ -44,6 +44,8 @@ export class ControlSystem {
     this.bideState.disposeModel()
     this.mouseState.disposeModel()
     this.keyboardState.disposeModel()
+    // TODO: 这里释放模型的代码加上去不知道行不行
+    // detector.detectorExits() && detector.setNull()
   }
   // 设置当前状态，用于跳转状态
   public setState(state: IState) {

@@ -1,6 +1,7 @@
 # ele-handpose
 
 An Electron application with Vue and TypesSript
+该软件可以检测用户的手部、分析用户的意图、操作计算机的按键与鼠标。如鼠标的点击、拖动，键盘快捷键等，并且用户可以自定义手势对应的快捷键。使用摄像头+机器学习
 
 ## Recommended IDE Setup
 
